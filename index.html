@@ -60,6 +60,7 @@
           <li><a href="#about"     class="nav-link">About</a></li>
           <li><a href="#learning"  class="nav-link">Learning</a></li>
           <li><a href="#events"    class="nav-link">Events</a></li>
+          <li><a href="#registration" class="nav-link">Register</a></li>
           <li><a href="#team"      class="nav-link">Our Team</a></li>
           <li><a href="#community" class="nav-link">Community</a></li>
         </ul>
@@ -315,7 +316,7 @@
                 </li>
               </ul>
               <!-- ✏️ EDITABLE: replace # with the real registration link -->
-              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a href="#registration" class="btn btn-outline btn-sm event-register">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
 
@@ -338,7 +339,7 @@
                   <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
                 </li>
               </ul>
-              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a href="#registration" class="btn btn-outline btn-sm event-register">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
 
@@ -361,7 +362,7 @@
                   <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
                 </li>
               </ul>
-              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a href="#registration" class="btn btn-outline btn-sm event-register">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
 
@@ -384,7 +385,7 @@
                   <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
                 </li>
               </ul>
-              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a href="#registration" class="btn btn-outline btn-sm event-register">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
 
@@ -407,7 +408,7 @@
                   <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
                 </li>
               </ul>
-              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a href="#registration" class="btn btn-outline btn-sm event-register">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
 
@@ -430,9 +431,104 @@
                   <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
                 </li>
               </ul>
-              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a href="#registration" class="btn btn-outline btn-sm event-register">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EVENT REGISTRATION ===================== -->
+    <section class="section section-alt" id="registration">
+      <div class="container">
+        <div class="sec-head registration-head" data-reveal>
+          <span class="kicker">Student Event Registration</span>
+          <h2 class="sec-title">SAVE YOUR SEAT.<br /><span class="grad-text">BUILD WITH AWS NHU.</span></h2>
+          <p class="sec-sub">Complete the form to download your registration PDF, then attach it in WhatsApp to confirm your registration.</p>
+        </div>
+
+        <div class="registration-card" data-reveal>
+          <div class="registration-brand">
+            <img id="registrationLogo" src="assets/icons/1.png" alt="AWS NHU logo" />
+            <div>
+              <p class="registration-brand-name">AWS <b>NHU</b></p>
+              <p class="registration-brand-caption">Nazeer Hussain University · Karachi</p>
+            </div>
+          </div>
+
+          <form id="registrationForm" class="registration-form">
+            <div class="registration-fields">
+              <div class="form-field">
+                <label for="studentName">Full Name <span aria-hidden="true">*</span></label>
+                <input id="studentName" name="fullName" type="text" autocomplete="name" maxlength="100" required />
+              </div>
+              <div class="form-field">
+                <label for="university">University / Institute Name <span aria-hidden="true">*</span></label>
+                <input id="university" name="university" type="text" autocomplete="organization" maxlength="120" required />
+              </div>
+              <div class="form-field">
+                <label for="department">Department <span aria-hidden="true">*</span></label>
+                <input id="department" name="department" type="text" maxlength="100" required />
+              </div>
+              <div class="form-field">
+                <label for="degreeProgram">Degree Program <span aria-hidden="true">*</span></label>
+                <input id="degreeProgram" name="degreeProgram" type="text" placeholder="e.g. BSCS, BSIT, BBA" maxlength="60" required />
+              </div>
+              <div class="form-field">
+                <label for="semester">Semester <span aria-hidden="true">*</span></label>
+                <select id="semester" name="semester" required>
+                  <option value="" selected disabled>Select semester</option>
+                  <option>1st Semester</option><option>2nd Semester</option>
+                  <option>3rd Semester</option><option>4th Semester</option>
+                  <option>5th Semester</option><option>6th Semester</option>
+                  <option>7th Semester</option><option>8th Semester</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="studentId">Student ID / Roll Number <span aria-hidden="true">*</span></label>
+                <input id="studentId" name="studentId" type="text" maxlength="40" required />
+              </div>
+              <div class="form-field">
+                <label for="studentEmail">Email Address <span aria-hidden="true">*</span></label>
+                <input id="studentEmail" name="email" type="email" autocomplete="email" maxlength="254" required />
+              </div>
+              <div class="form-field">
+                <label for="whatsappNumber">WhatsApp Number <span aria-hidden="true">*</span></label>
+                <input id="whatsappNumber" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. 03XXXXXXXXX or +923XXXXXXXXX" maxlength="20" required />
+              </div>
+              <div class="form-field form-field-wide">
+                <label for="eventName">Event Name <span aria-hidden="true">*</span></label>
+                <select id="eventName" name="eventName" required>
+                  <option value="" selected disabled>Select an event</option>
+                  <option>AWS Introduction Sessions</option>
+                  <option>Cloud Computing Workshops</option>
+                  <option>Hands-On Technical Labs</option>
+                  <option>AI &amp; Innovation Sessions</option>
+                  <option>Student Networking Events</option>
+                  <option>Community Meetups</option>
+                </select>
+              </div>
+              <div class="form-field form-field-wide">
+                <label for="joinReason">Why do you want to join this event? <span aria-hidden="true">*</span></label>
+                <textarea id="joinReason" name="reason" rows="4" maxlength="500" required placeholder="Tell us briefly what you hope to learn or build."></textarea>
+                <span class="field-hint">Up to 500 characters.</span>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg registration-submit" type="submit">Submit Registration</button>
+          </form>
+
+          <div id="registrationStatus" class="registration-status" role="status" aria-live="polite" hidden>
+            <h3>Registration PDF is ready</h3>
+            <p id="registrationStatusMessage"></p>
+            <div class="registration-next-steps">
+              <a id="downloadRegistrationPdf" class="btn btn-outline btn-sm" download="AWS-NHU-Student-Registration.pdf">Download PDF again</a>
+              <a id="whatsappRegistrationLink" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Open WhatsApp</a>
+            </div>
+            <p class="registration-instructions"><b>Next:</b> In WhatsApp, tap the attachment / paperclip icon, choose the downloaded <strong>AWS-NHU-Student-Registration.pdf</strong>, and send it. On desktop, select the paperclip in WhatsApp Web and choose the PDF from Downloads.</p>
+          </div>
+          <p id="registrationError" class="registration-error" role="alert" hidden></p>
         </div>
       </div>
     </section>
@@ -623,6 +719,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#learning">Learning</a></li>
           <li><a href="#events">Events</a></li>
+          <li><a href="#registration">Student Event Registration</a></li>
           <li><a href="#team">Our Team</a></li>
           <li><a href="#community">Community</a></li>
         </ul>
@@ -670,6 +767,7 @@
   <!-- Placeholder-CTA toast (shown when an editable link is still unconfigured) -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>

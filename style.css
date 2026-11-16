@@ -543,6 +543,54 @@ h1, h2, h3, h4, .brand-text, .btn, .kicker, .chip, .ev-badge, .team-role {
 
 .event-register { margin-top: 20px; align-self: flex-start; }
 
+/* ------------------------------ 15a. Event registration ------------------------------ */
+.registration-head { margin-inline: auto; text-align: center; }
+.registration-card {
+  max-width: 900px; margin-inline: auto; padding: clamp(22px, 4vw, 42px);
+  border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)), rgba(16, 19, 38, 0.72);
+  box-shadow: 0 28px 80px -48px rgba(0, 0, 0, 0.9);
+}
+.registration-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
+.registration-brand img { width: 54px; height: 54px; padding: 4px; border-radius: 14px; background: #fff; object-fit: contain; }
+.registration-brand-name { font: 700 19px/1.2 var(--font-display); letter-spacing: 0.04em; }
+.registration-brand-name b { color: var(--orange); }
+.registration-brand-caption { margin-top: 4px; color: var(--text-2); font-size: 12.5px; }
+.registration-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 18px; }
+.form-field { display: flex; min-width: 0; flex-direction: column; gap: 8px; }
+.form-field-wide { grid-column: 1 / -1; }
+.form-field label { color: rgba(255, 255, 255, 0.9); font-size: 13px; font-weight: 600; }
+.form-field label span { color: var(--orange); }
+.form-field input, .form-field select, .form-field textarea {
+  width: 100%; min-height: 48px; padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 11px;
+  background: rgba(8, 10, 24, 0.72); color: var(--white);
+  font: 14px/1.5 var(--font-body); color-scheme: dark;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-field textarea { min-height: 112px; resize: vertical; }
+.form-field input::placeholder, .form-field textarea::placeholder { color: rgba(161, 161, 181, 0.7); }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+  outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.14);
+}
+.field-hint { color: var(--text-2); font-size: 11px; }
+.registration-submit { margin-top: 26px; }
+.registration-status {
+  display: grid; gap: 12px; margin-top: 28px; padding: 20px;
+  border: 1px solid rgba(96, 165, 250, 0.32); border-radius: 15px;
+  background: rgba(96, 165, 250, 0.07);
+}
+.registration-status[hidden], .registration-error[hidden] { display: none; }
+.registration-status h3 { font-size: 18px; color: #A7F3D0; }
+.registration-status > p { color: var(--text-2); font-size: 13px; line-height: 1.65; }
+.registration-next-steps { display: flex; flex-wrap: wrap; gap: 10px; }
+.registration-instructions { padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.registration-instructions b, .registration-instructions strong { color: var(--white); }
+.registration-error {
+  margin-top: 18px; padding: 13px 15px; border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: 12px; background: rgba(248, 113, 113, 0.08); color: #FCA5A5; font-size: 13px;
+}
+
 /* ------------------------------ 16. Team ------------------------------ */
 .team-featured {
   display: flex; align-items: center; gap: 28px;
@@ -751,6 +799,9 @@ html.js [data-reveal].revealed { opacity: 1; transform: none; }
 
 @media (max-width: 640px) {
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .registration-fields { grid-template-columns: 1fr; gap: 16px; }
+  .form-field-wide { grid-column: auto; }
+  .registration-submit, .registration-next-steps .btn { width: 100%; }
   .benefit-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
   .team-card { padding: 22px 12px; }

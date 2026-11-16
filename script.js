@@ -103,7 +103,7 @@
   }
 
   /* ---------------- 4. Active section highlighting ---------------- */
-  const sectionIds = ['home', 'about', 'learning', 'events', 'team', 'community'];
+  const sectionIds = ['home', 'about', 'learning', 'events', 'registration', 'team', 'community'];
   const sections = sectionIds
     .map((id) => document.getElementById(id))
     .filter(Boolean);
@@ -325,10 +325,203 @@
     }
   }
 
-  /* ---------------- 9. Placeholder CTA links ----------------
-     Links marked data-editable (join buttons, registrations,
-     socials) have no real URL yet. Instead of a dead jump to
-     "#", show a friendly toast. Replace the hrefs to go live. */
+  /* ---------------- 9. Student event registration ---------------- */
+  const registrationForm = document.getElementById('registrationForm');
+  const registrationStatus = document.getElementById('registrationStatus');
+  const registrationStatusMessage = document.getElementById('registrationStatusMessage');
+  const registrationError = document.getElementById('registrationError');
+  const downloadRegistrationPdf = document.getElementById('downloadRegistrationPdf');
+  const whatsappRegistrationLink = document.getElementById('whatsappRegistrationLink');
+  let registrationPdfUrl = null;
+  const whatsappMessage = 'Assalam-o-Alaikum! I have completed my registration for the AWS NHU event. Please find my registration details attached as a PDF.';
+  const whatsappUrl = `https://wa.me/923132017397?text=${encodeURIComponent(whatsappMessage)}`;
+
+  document.querySelectorAll('.event-register').forEach((link) => {
+    link.addEventListener('click', () => {
+      const eventTitle = link.closest('.event-card')?.querySelector('h3')?.textContent.trim();
+      const eventSelect = registrationForm?.elements.namedItem('eventName');
+      if (eventTitle && eventSelect) eventSelect.value = eventTitle;
+    });
+  });
+
+  if (registrationForm) {
+    registrationForm.addEventListener('input', (event) => {
+      event.target.setCustomValidity('');
+      registrationError.hidden = true;
+      registrationStatus.hidden = true;
+    });
+
+    registrationForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      registrationError.hidden = true;
+      registrationStatus.hidden = true;
+
+      const requiredFields = [...registrationForm.querySelectorAll('[required]')];
+      requiredFields.forEach((field) => {
+        field.setCustomValidity(field.value.trim() ? '' : 'Please complete this field.');
+      });
+
+      const whatsappField = registrationForm.elements.namedItem('whatsapp');
+      const phoneDigits = whatsappField.value.replace(/\D/g, '');
+      const phoneFormatIsValid = /^[+0-9\s()-]{10,20}$/.test(whatsappField.value);
+      whatsappField.setCustomValidity(
+        phoneFormatIsValid && phoneDigits.length >= 10 && phoneDigits.length <= 15
+          ? ''
+          : 'Enter a valid phone number with 10 to 15 digits, using only common phone-number characters.'
+      );
+
+      if (!registrationForm.reportValidity()) return;
+
+      const pdfLibrary = window.jspdf;
+      if (!pdfLibrary || !pdfLibrary.jsPDF) {
+        registrationError.textContent = 'The PDF generator could not be loaded. Check your internet connection and try again.';
+        registrationError.hidden = false;
+        return;
+      }
+
+      const whatsappWindow = window.open('about:blank', '_blank');
+      const formValues = new FormData(registrationForm);
+      const student = {
+        fullName: formValues.get('fullName').trim(),
+        university: formValues.get('university').trim(),
+        department: formValues.get('department').trim(),
+        degreeProgram: formValues.get('degreeProgram').trim(),
+        semester: formValues.get('semester').trim(),
+        studentId: formValues.get('studentId').trim(),
+        email: formValues.get('email').trim(),
+        whatsapp: formValues.get('whatsapp').trim(),
+        eventName: formValues.get('eventName').trim(),
+        reason: formValues.get('reason').trim()
+      };
+
+      try {
+        const { jsPDF } = pdfLibrary;
+        const pdf = new jsPDF({ unit: 'mm', format: 'a4' });
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const margin = 17;
+        const now = new Date();
+        const submittedAt = new Intl.DateTimeFormat('en-PK', {
+          dateStyle: 'long',
+          timeStyle: 'short',
+          timeZone: 'Asia/Karachi'
+        }).format(now) + ' PKT';
+        const logo = document.getElementById('registrationLogo');
+
+        if (!logo || !logo.complete || !logo.naturalWidth) {
+          throw new Error('The AWS NHU logo could not be loaded.');
+        }
+
+        const logoCanvas = document.createElement('canvas');
+        const logoScale = Math.min(1, 480 / Math.max(logo.naturalWidth, logo.naturalHeight));
+        logoCanvas.width = Math.max(1, Math.round(logo.naturalWidth * logoScale));
+        logoCanvas.height = Math.max(1, Math.round(logo.naturalHeight * logoScale));
+        const logoContext = logoCanvas.getContext('2d');
+        if (!logoContext) throw new Error('The AWS NHU logo could not be prepared for the PDF.');
+        logoContext.drawImage(logo, 0, 0, logoCanvas.width, logoCanvas.height);
+
+        pdf.setFillColor(8, 10, 24);
+        pdf.rect(0, 0, pageWidth, 47, 'F');
+        pdf.setFillColor(255, 153, 0);
+        pdf.rect(0, 45, pageWidth, 2, 'F');
+        pdf.setFillColor(255, 255, 255);
+        pdf.roundedRect(margin, 9, 27, 27, 3, 3, 'F');
+        pdf.addImage(logoCanvas.toDataURL('image/png'), 'PNG', margin + 2, 11, 23, 23);
+        pdf.setTextColor(255, 255, 255);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(19);
+        pdf.text('AWS NHU', margin + 35, 18);
+        pdf.setFontSize(11);
+        pdf.setTextColor(255, 153, 0);
+        pdf.text('STUDENT EVENT REGISTRATION', margin + 35, 26);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(8.5);
+        pdf.setTextColor(205, 210, 225);
+        pdf.text(`Registration received: ${submittedAt}`, margin + 35, 34);
+
+        const drawField = (label, value, x, y, width, height) => {
+          pdf.setFillColor(246, 247, 250);
+          pdf.setDrawColor(225, 228, 235);
+          pdf.roundedRect(x, y, width, height, 2, 2, 'FD');
+          pdf.setFont('helvetica', 'bold');
+          pdf.setFontSize(7.5);
+          pdf.setTextColor(102, 110, 125);
+          pdf.text(label.toUpperCase(), x + 4, y + 6);
+          pdf.setFont('helvetica', 'normal');
+          pdf.setFontSize(9.5);
+          pdf.setTextColor(25, 30, 43);
+          const lines = pdf.splitTextToSize(value || '-', width - 8);
+          pdf.text(lines.slice(0, 2), x + 4, y + 12);
+        };
+
+        const halfWidth = (pageWidth - margin * 2 - 5) / 2;
+        const profileFields = [
+          ['Full Name', student.fullName],
+          ['University / Institute', student.university],
+          ['Department', student.department],
+          ['Degree Program', student.degreeProgram],
+          ['Semester', student.semester],
+          ['Student ID / Roll Number', student.studentId],
+          ['Email Address', student.email],
+          ['WhatsApp Number', student.whatsapp]
+        ];
+        profileFields.forEach(([label, value], index) => {
+          const col = index % 2;
+          const row = Math.floor(index / 2);
+          drawField(label, value, margin + col * (halfWidth + 5), 56 + row * 23, halfWidth, 20);
+        });
+
+        drawField('Event Name', student.eventName, margin, 150, pageWidth - margin * 2, 20);
+        pdf.setFillColor(246, 247, 250);
+        pdf.setDrawColor(225, 228, 235);
+        pdf.roundedRect(margin, 179, pageWidth - margin * 2, 59, 2, 2, 'FD');
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(7.5);
+        pdf.setTextColor(102, 110, 125);
+        pdf.text('WHY I WANT TO JOIN', margin + 4, 186);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(9.5);
+        pdf.setTextColor(25, 30, 43);
+        pdf.text(pdf.splitTextToSize(student.reason, pageWidth - margin * 2 - 8).slice(0, 7), margin + 4, 193);
+
+        pdf.setDrawColor(225, 228, 235);
+        pdf.line(margin, 278, pageWidth - margin, 278);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(8);
+        pdf.setTextColor(110, 117, 130);
+        pdf.text('AWS NHU | Nazeer Hussain University, Karachi, Pakistan', margin, 284);
+        pdf.text('Thank you for registering.', pageWidth - margin, 284, { align: 'right' });
+
+        const filename = 'AWS-NHU-Student-Registration.pdf';
+        const pdfBlob = pdf.output('blob');
+        const nextPdfUrl = URL.createObjectURL(pdfBlob);
+        pdf.save(filename);
+
+        if (registrationPdfUrl) URL.revokeObjectURL(registrationPdfUrl);
+        registrationPdfUrl = nextPdfUrl;
+        downloadRegistrationPdf.href = registrationPdfUrl;
+        whatsappRegistrationLink.href = whatsappUrl;
+        registrationStatusMessage.textContent = whatsappWindow
+          ? `Your registration for ${student.eventName} has been saved as ${filename}. WhatsApp is opening with a prepared message; attach the downloaded PDF before sending.`
+          : `Your registration for ${student.eventName} has been saved as ${filename}. Use the Open WhatsApp button below, then attach the downloaded PDF before sending.`;
+        registrationStatus.hidden = false;
+
+        if (whatsappWindow) {
+          whatsappWindow.location.href = whatsappUrl;
+        }
+      } catch (error) {
+        if (whatsappWindow) whatsappWindow.close();
+        console.error('Unable to generate the AWS NHU registration PDF:', error);
+        registrationError.textContent = error instanceof Error
+          ? `We could not generate your PDF: ${error.message}`
+          : 'We could not generate your PDF. Please try again.';
+        registrationError.hidden = false;
+      }
+    });
+  }
+
+  /* ---------------- 10. Placeholder CTA links ----------------
+     Links marked data-editable (socials / community) still have
+     no destination yet, so show the existing friendly toast. */
   const toast = document.getElementById('toast');
   let toastTimer = null;
   const showToast = (msg) => {
