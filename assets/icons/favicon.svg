@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- AWS NHU favicon: gradient planet + AWS-style smile -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A78BFA"/>
+      <stop offset=".55" stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#FF9900"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#080A18"/>
+  <circle cx="32" cy="26" r="14" fill="url(#g)"/>
+  <ellipse cx="32" cy="27" rx="23" ry="7.5" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" transform="rotate(-16 32 27)"/>
+  <path d="M14 48 Q32 58 50 48" fill="none" stroke="#FF9900" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M48.4 45.8 50 48l-3 .8z" fill="#FF9900"/>
+</svg>

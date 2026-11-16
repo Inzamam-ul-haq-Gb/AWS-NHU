@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+       AWS NHU — AWS Student Builder Community
+       Nazeer Hussain University (NHU), Karachi, Pakistan
+       Static site: HTML5 + CSS3 + Vanilla JS (no frameworks)
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS NHU — AWS Student Builder Community | Nazeer Hussain University</title>
+  <meta name="description" content="AWS NHU is a student-driven AWS builder community at Nazeer Hussain University, Karachi — exploring cloud computing, artificial intelligence, hands-on projects and career growth together." />
+  <meta name="theme-color" content="#080A18" />
+
+  <!-- Open Graph (update the description/URL when deploying) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AWS NHU — AWS Student Builder Community" />
+  <meta property="og:description" content="Empowering the next generation of cloud innovators, developers, and technology leaders at Nazeer Hussain University." />
+
+  <link rel="icon" type="image/png" href="assets/icons/1.png" />
+
+  <!-- Fonts: Space Grotesk (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- Flag JS availability immediately so scroll-reveal styles only apply when JS runs (no-JS visitors still see all content) -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+
+<body>
+  <!-- Accessibility: skip straight to content -->
+  <a class="skip-link" href="#home">Skip to content</a>
+
+  <!-- Top scroll-progress bar -->
+  <div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <!-- ======= Cosmic background layers (purely decorative) ======= -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+  <div class="orb orb-c" aria-hidden="true"></div>
+  <canvas id="starCanvas" aria-hidden="true"></canvas>
+
+  <!-- =========================== NAVBAR =========================== -->
+  <header class="nav" id="navbar">
+    <div class="container nav-inner">
+
+      <!-- Logo -->
+      <a href="#home" class="brand" aria-label="AWS NHU — back to top">
+        <img class="brand-mark" src="assets/icons/1.png" alt="" aria-hidden="true" />
+        <span class="brand-text">AWS&nbsp;<b>NHU</b></span>
+      </a>
+
+      <!-- Primary navigation (desktop row / mobile dropdown panel) -->
+      <nav class="nav-menu" id="navMenu" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="#home"      class="nav-link active">Home</a></li>
+          <li><a href="#about"     class="nav-link">About</a></li>
+          <li><a href="#learning"  class="nav-link">Learning</a></li>
+          <li><a href="#events"    class="nav-link">Events</a></li>
+          <li><a href="#team"      class="nav-link">Our Team</a></li>
+          <li><a href="#community" class="nav-link">Community</a></li>
+        </ul>
+        <a href="https://chat.whatsapp.com/HIpG6VDrTShJx8RLMLNnQT" class="btn btn-primary btn-sm nav-cta" target="_blank" rel="noopener noreferrer">Join Our Community</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- =========================== HERO =========================== -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+
+        <div class="hero-copy">
+          <span class="hero-pill" data-hero style="--d:.05s">
+            <span class="pill-dot" aria-hidden="true"></span>
+            NAZEER HUSSAIN UNIVERSITY&nbsp;&nbsp;|&nbsp;&nbsp;KARACHI, PAKISTAN
+          </span>
+
+          <h1 class="hero-title">
+            <!-- NOTE: the gradient span is nested so the entrance animation (outer)
+                 and the animated gradient (inner) never fight over the `animation` property -->
+            <span class="ht-line" data-hero style="--d:.12s">BUILD YOUR</span>
+            <span class="ht-line" data-hero style="--d:.22s"><span class="grad-anim">FUTURE WITH&nbsp;AWS.</span></span>
+          </h1>
+
+          <p class="hero-sub" data-hero style="--d:.34s">
+            Empowering the next generation of cloud innovators, developers, and
+            technology leaders at Nazeer Hussain University.
+          </p>
+
+          <div class="hero-actions" data-hero style="--d:.44s">
+            <a href="#about" class="btn btn-primary btn-lg">Explore Our Community</a>
+            <a href="#learning" class="btn btn-ghost btn-lg">Become a Builder</a>
+          </div>
+        </div>
+
+        <!-- Cosmic planet scene with floating AWS service labels -->
+        <div class="hero-visual" data-hero style="--d:.3s" aria-hidden="true">
+          <div class="planet-scene" id="planetScene">
+            <div class="planet-glow"></div>
+
+            <div class="orbit orbit-1"><span class="orbit-dot od-1"></span></div>
+            <div class="orbit orbit-2"><span class="orbit-dot od-2"></span></div>
+
+            <div class="planet">
+              <span class="planet-shade"></span>
+              <span class="planet-highlight"></span>
+            </div>
+
+            <!-- Floating AWS / cloud technology labels -->
+            <span class="chip chip-1"><i></i>Amazon EC2</span>
+            <span class="chip chip-2"><i></i>Amazon S3</span>
+            <span class="chip chip-3"><i></i>AWS Lambda</span>
+            <span class="chip chip-4"><i></i>Amazon Bedrock</span>
+            <span class="chip chip-5"><i></i>Amazon CloudWatch</span>
+            <span class="chip chip-6"><i></i>AWS IAM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <a href="#about" class="scroll-cue" aria-label="Scroll down to the About section">
+        <span class="mouse" aria-hidden="true"><span class="wheel"></span></span>
+        <span class="cue-text">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ======================= TECH MARQUEE ======================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>Amazon EC2</span><span>Amazon S3</span><span>AWS Lambda</span><span>Amazon Bedrock</span>
+          <span>Amazon SageMaker</span><span>Amazon DynamoDB</span><span>Amazon CloudFront</span>
+          <span>AWS CloudWatch</span><span>AWS IAM</span><span>Amazon EKS</span>
+        </div>
+        <div class="marquee-group">
+          <span>Amazon EC2</span><span>Amazon S3</span><span>AWS Lambda</span><span>Amazon Bedrock</span>
+          <span>Amazon SageMaker</span><span>Amazon DynamoDB</span><span>Amazon CloudFront</span>
+          <span>AWS CloudWatch</span><span>AWS IAM</span><span>Amazon EKS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================== ABOUT =========================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="sec-head" data-reveal>
+          <span class="kicker">About AWS NHU</span>
+          <h2 class="sec-title">MORE THAN A COMMUNITY.<br /><span class="grad-text">WE ARE BUILDERS.</span></h2>
+          <p class="sec-sub">
+            AWS NHU is a student-driven technology community at Nazeer Hussain University,
+            bringing together passionate students who want to explore cloud computing,
+            artificial intelligence, software development, and emerging technologies.
+          </p>
+        </div>
+
+        <div class="grid grid-3 about-grid">
+          <!-- Who We Are -->
+          <article class="glass-card about-card" data-reveal style="--d:0s; --accent:var(--blue)">
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Who We Are</h3>
+            <p>
+              A student-driven community at Nazeer Hussain University where passionate minds
+              come together to explore cloud computing, artificial intelligence, software
+              development, and emerging technologies.
+            </p>
+          </article>
+
+          <!-- Our Mission -->
+          <article class="glass-card about-card" data-reveal style="--d:.1s; --accent:var(--orange)">
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h3>Our Mission</h3>
+            <p>
+              To empower students with practical cloud knowledge, industry-relevant skills,
+              and opportunities to innovate through AWS technologies.
+            </p>
+          </article>
+
+          <!-- Our Vision -->
+          <article class="glass-card about-card" data-reveal style="--d:.2s; --accent:var(--purple)">
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Our Vision</h3>
+            <p>
+              To develop a strong ecosystem of student innovators who build impactful
+              solutions and contribute to the future of technology.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WHAT WE EXPLORE (LEARNING) ==================== -->
+    <section class="section section-alt" id="learning">
+      <div class="container">
+        <div class="sec-head" data-reveal>
+          <span class="kicker">What We Explore</span>
+          <h2 class="sec-title">FOUR PATHS INTO<br /><span class="grad-text">THE FUTURE OF TECH.</span></h2>
+          <p class="sec-sub">
+            From your first cloud console to intelligent applications — pick a path,
+            learn it hands-on, and build with the community.
+          </p>
+        </div>
+
+        <div class="grid grid-4 explore-grid">
+          <!-- 01 Cloud Computing -->
+          <article class="glass-card explore-card" data-reveal style="--d:0s; --accent:var(--orange)">
+            <span class="card-num" aria-hidden="true">01</span>
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            </div>
+            <h3>Cloud Computing</h3>
+            <p>Explore AWS cloud infrastructure, EC2, S3, Lambda, and cloud architecture.</p>
+            <!-- ✏️ EDITABLE: external AWS resource link -->
+            <a class="card-link" href="https://aws.amazon.com/products/" target="_blank" rel="noopener noreferrer">
+              Explore <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+
+          <!-- 02 Artificial Intelligence -->
+          <article class="glass-card explore-card" data-reveal style="--d:.08s; --accent:var(--purple)">
+            <span class="card-num" aria-hidden="true">02</span>
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+            </div>
+            <h3>Artificial Intelligence</h3>
+            <p>Discover AI, machine learning, generative AI, and intelligent applications.</p>
+            <!-- ✏️ EDITABLE: external AWS resource link -->
+            <a class="card-link" href="https://aws.amazon.com/machine-learning/" target="_blank" rel="noopener noreferrer">
+              Explore <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+
+          <!-- 03 Hands-On Projects -->
+          <article class="glass-card explore-card" data-reveal style="--d:.16s; --accent:var(--blue)">
+            <span class="card-num" aria-hidden="true">03</span>
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3>Hands-On Projects</h3>
+            <p>Turn theoretical knowledge into practical projects and real-world solutions.</p>
+            <!-- Points to the events section, where hands-on labs and project sessions live -->
+            <a class="card-link" href="#events">
+              Explore <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+
+          <!-- 04 Career & Certifications -->
+          <article class="glass-card explore-card" data-reveal style="--d:.24s; --accent:var(--purple)">
+            <span class="card-num" aria-hidden="true">04</span>
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12.5V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-4.5"/></svg>
+            </div>
+            <h3>Career &amp; Certifications</h3>
+            <p>Develop industry-ready skills and explore AWS learning and certification pathways.</p>
+            <!-- ✏️ EDITABLE: external AWS resource link -->
+            <a class="card-link" href="https://aws.amazon.com/certification/" target="_blank" rel="noopener noreferrer">
+              Explore <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= EVENTS & ACTIVITIES ======================= -->
+    <section class="section" id="events">
+      <div class="container">
+        <div class="sec-head" data-reveal>
+          <span class="kicker">Events &amp; Activities</span>
+          <h2 class="sec-title">LEARN. BUILD. <span class="grad-text">EXPERIENCE.</span></h2>
+          <p class="sec-sub">
+            Sessions, workshops, labs and meetups designed by students, for students.
+          </p>
+        </div>
+
+        <!-- Honest placeholder notice — details will be updated once events are scheduled -->
+        <p class="edit-note" data-reveal>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Join Our <a href="https://chat.whatsapp.com/HIpG6VDrTShJx8RLMLNnQT" target="_blank" rel="noopener noreferrer">WhatsApp Community</a> to stay updated on upcoming events, workshops, and hands-on labs Events .
+        </p>
+
+        <div class="grid grid-3 events-grid">
+
+          <!-- Event 1 -->
+          <article class="glass-card event-card" data-reveal style="--d:0s">
+            <div class="event-visual ev-1" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              <span class="ev-badge">Upcoming</span>
+            </div>
+            <div class="event-body">
+              <h3>AWS Introduction Sessions</h3>
+              <p>A beginner-friendly introduction to AWS, the cloud, and how the community learns and builds together.</p>
+              <ul class="event-meta">
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span><b>Date:</b> <span class="tba">TBA — to be announced</span></span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
+                </li>
+              </ul>
+              <!-- ✏️ EDITABLE: replace # with the real registration link -->
+              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Event 2 -->
+          <article class="glass-card event-card" data-reveal style="--d:.08s">
+            <div class="event-visual ev-2" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <span class="ev-badge">Upcoming</span>
+            </div>
+            <div class="event-body">
+              <h3>Cloud Computing Workshops</h3>
+              <p>Guided workshops covering core AWS services, architecture basics, and getting started with the free tier.</p>
+              <ul class="event-meta">
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span><b>Date:</b> <span class="tba">TBA — to be announced</span></span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Event 3 -->
+          <article class="glass-card event-card" data-reveal style="--d:.16s">
+            <div class="event-visual ev-3" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              <span class="ev-badge">Upcoming</span>
+            </div>
+            <div class="event-body">
+              <h3>Hands-On Technical Labs</h3>
+              <p>Practical lab sessions where you build, break, and fix real setups in the AWS console — side by side.</p>
+              <ul class="event-meta">
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span><b>Date:</b> <span class="tba">TBA — to be announced</span></span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Event 4 -->
+          <article class="glass-card event-card" data-reveal style="--d:0s">
+            <div class="event-visual ev-4" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.4L22.3 18.3l-2.4.9L19 21.6l-.9-2.4-2.4-.9 2.4-.9z"/></svg>
+              <span class="ev-badge">Upcoming</span>
+            </div>
+            <div class="event-body">
+              <h3>AI &amp; Innovation Sessions</h3>
+              <p>Explorations of AI, machine learning, and generative AI on AWS — from core concepts to live demos.</p>
+              <ul class="event-meta">
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span><b>Date:</b> <span class="tba">TBA — to be announced</span></span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Event 5 -->
+          <article class="glass-card event-card" data-reveal style="--d:.08s">
+            <div class="event-visual ev-5" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="ev-badge">Upcoming</span>
+            </div>
+            <div class="event-body">
+              <h3>Student Networking Events</h3>
+              <p>Meet fellow builders, exchange ideas, and find project partners across departments and batches.</p>
+              <ul class="event-meta">
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span><b>Date:</b> <span class="tba">TBA — to be announced</span></span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Event 6 -->
+          <article class="glass-card event-card" data-reveal style="--d:.16s">
+            <div class="event-visual ev-6" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+              <span class="ev-badge">Upcoming</span>
+            </div>
+            <div class="event-body">
+              <h3>Community Meetups</h3>
+              <p>Regular community gatherings to share progress, demo projects, and plan what the community builds next.</p>
+              <ul class="event-meta">
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span><b>Date:</b> <span class="tba">TBA — to be announced</span></span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span><b>Venue:</b> <span class="tba">NHU Campus, Karachi (TBA)</span></span>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-outline btn-sm event-register" data-editable="registration">Register<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== OUR TEAM =========================== -->
+    <section class="section section-alt" id="team">
+      <div class="container">
+        <div class="sec-head" data-reveal>
+          <span class="kicker">Our Team</span>
+          <h2 class="sec-title">THE PEOPLE BEHIND<br /><span class="grad-text">THE COMMUNITY.</span></h2>
+          <p class="sec-sub">
+            The students who plan sessions, organize events, and keep AWS NHU building.
+          </p>
+        </div>
+
+        <p class="edit-note" data-reveal>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          these are the our Shining stars of the community — the students who plan sessions, organize events, and keep AWS NHU building.
+        </p>
+
+        <!-- ✏️ EDITABLE: group leader profile -->
+        <article class="glass-card team-featured" data-reveal>
+          <a class="team-avatar-link" href="https://www.linkedin.com/in/inzamam-ul-haq-6b1b1a38a/" target="_blank" rel="noopener noreferrer" aria-label="View Inzamam-Ul-Haq's LinkedIn profile">
+            <div class="avatar avatar-lg">
+              <img src="assets/icons/co%201.png" alt="" />
+            </div>
+          </a>
+          <div class="team-info">
+            <a class="team-profile-link" href="https://www.linkedin.com/in/inzamam-ul-haq-6b1b1a38a/" target="_blank" rel="noopener noreferrer">
+              <h3>Inzamam-Ul-Haq</h3>
+              <span class="team-role">AWS NHU — Group Leader</span>
+              <p class="team-bio">
+                Leads the community — planning sessions, coordinating activities with the
+                university, and helping every builder find their path.
+              </p>
+            </a>
+            <div class="team-socials">
+              <a href="https://www.linkedin.com/in/inzamam-ul-haq-6b1b1a38a/" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="Inzamam-Ul-Haq's LinkedIn profile" title="LinkedIn profile">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <div class="grid grid-4 team-grid">
+          <!-- ✏️ EDITABLE: repeat this card for each team member -->
+          <article class="glass-card team-card" data-reveal style="--d:0s">
+            <div class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Team Member Name</h3>
+            <span class="team-role">Add designation</span>
+            <a href="#" class="icon-link" data-editable="social-link" aria-label="LinkedIn profile (placeholder link)" title="Placeholder — add LinkedIn URL">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </article>
+
+          <article class="glass-card team-card" data-reveal style="--d:.08s">
+            <div class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Team Member Name</h3>
+            <span class="team-role">Add designation</span>
+            <a href="#" class="icon-link" data-editable="social-link" aria-label="LinkedIn profile (placeholder link)" title="Placeholder — add LinkedIn URL">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </article>
+
+          <article class="glass-card team-card" data-reveal style="--d:.16s">
+            <div class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Team Member Name</h3>
+            <span class="team-role">Add designation</span>
+            <a href="#" class="icon-link" data-editable="social-link" aria-label="LinkedIn profile (placeholder link)" title="Placeholder — add LinkedIn URL">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </article>
+
+          <article class="glass-card team-card" data-reveal style="--d:.24s">
+            <div class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h3>Team Member Name</h3>
+            <span class="team-role">Add designation</span>
+            <a href="#" class="icon-link" data-editable="social-link" aria-label="LinkedIn profile (placeholder link)" title="Placeholder — add LinkedIn URL">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= COMMUNITY ========================= -->
+    <section class="section" id="community">
+      <div class="container community-inner">
+
+        <div class="community-copy" data-reveal>
+          <span class="kicker">Join the Community</span>
+          <h2 class="sec-title">YOUR IDEAS.<br />YOUR PEOPLE.<br /><span class="grad-anim">YOUR COMMUNITY.</span></h2>
+          <p class="sec-sub">
+            Connect with like-minded students, share knowledge, collaborate on projects,
+            and grow together.
+          </p>
+          <div class="community-actions">
+            <a href="https://chat.whatsapp.com/HIpG6VDrTShJx8RLMLNnQT" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Join AWS NHU<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <span class="join-note">Connect with us on WhatsApp.</span>
+          </div>
+        </div>
+
+        <ul class="benefit-grid">
+          <li class="glass-card benefit" data-reveal style="--d:0s; --accent:var(--blue)">
+            <div class="icon-tile icon-tile-sm" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h4>Learn together</h4>
+            <p>Study circles, shared resources, and peer-to-peer learning for every level.</p>
+          </li>
+          <li class="glass-card benefit" data-reveal style="--d:.08s; --accent:var(--orange)">
+            <div class="icon-tile icon-tile-sm" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h4>Build real projects</h4>
+            <p>Team up on hands-on projects that go far beyond classroom theory.</p>
+          </li>
+          <li class="glass-card benefit" data-reveal style="--d:.16s; --accent:var(--purple)">
+            <div class="icon-tile icon-tile-sm" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+            </div>
+            <h4>Share knowledge</h4>
+            <p>Present, demo, and teach what you learn back to the community.</p>
+          </li>
+          <li class="glass-card benefit" data-reveal style="--d:.24s; --accent:var(--blue)">
+            <div class="icon-tile icon-tile-sm" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4>Connect with innovators</h4>
+            <p>Meet students who share your curiosity, ambition, and love for building.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================== FINAL CALL TO ACTION ======================== -->
+    <section class="section cta-section" id="join">
+      <div class="container">
+        <div class="cta-panel" data-reveal="zoom">
+          <div class="cta-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span class="kicker kicker-light">Start Today</span>
+          <h2 class="cta-title">READY TO BUILD<br /><span class="grad-anim">SOMETHING AMAZING?</span></h2>
+          <p class="cta-sub">
+            Your journey into cloud computing and innovation starts here. <a href="https://chat.whatsapp.com/HIpG6VDrTShJx8RLMLNnQT" target="_blank" rel="noopener noreferrer">Join AWS NHU</a>
+            and become part of the next generation of builders.
+          </p>
+          <a href="https://chat.whatsapp.com/HIpG6VDrTShJx8RLMLNnQT" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Join Our Community<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <span class="join-note">Connect with us on WhatsApp.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================== FOOTER =========================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+        <a href="#home" class="brand" aria-label="AWS NHU — back to top">
+          <img class="brand-mark" src="assets/icons/1.png" alt="" aria-hidden="true" />
+          <span class="brand-text">AWS&nbsp;<b>NHU</b></span>
+        </a>
+        <p class="footer-desc">
+          A student-driven AWS builder community at Nazeer Hussain University —
+          learning, building, and growing together in the cloud.
+        </p>
+        <p class="footer-uni">Nazeer Hussain University · Karachi, Pakistan</p>
+        <div class="footer-brand-marks" aria-label="AWS NHU institutional logos">
+          <img src="assets/icons/1.png" alt="" />
+          <img src="assets/icons/2.png" alt="" />
+          <img src="assets/icons/3.png" alt="" />
+          <img class="aws-logo" src="assets/icons/4.webp" alt="" />
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Quick links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#learning">Learning</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#community">Community</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <!-- ✏️ EDITABLE: replace # placeholders with real profile URLs / email address -->
+        <ul class="footer-social">
+          <li>
+            <a href="#" data-editable="social-link" title="Placeholder — add LinkedIn URL">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="#" data-editable="social-link" title="Placeholder — add Instagram URL">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href="#" data-editable="social-link" title="Placeholder — add community email address">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg>
+              Email
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© <span id="year">2026</span> AWS NHU — AWS Student Builder Community · Nazeer Hussain University, Karachi, Pakistan.</p>
+        <p class="footer-note">A student-run community website. AWS and Amazon are trademarks of Amazon.com, Inc.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back-to-top button -->
+  <button class="to-top" id="toTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- Placeholder-CTA toast (shown when an editable link is still unconfigured) -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
